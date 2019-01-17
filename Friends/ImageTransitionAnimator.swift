@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol LabelProviding {
+protocol FriendProviding {
     var label: UILabel! { get }
     var image: UIImageView! { get }
 }
 
-typealias LabelProvidingVC = LabelProviding & UIViewController
+typealias FriendProvidingVC = FriendProviding & UIViewController
 
 class ImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -22,8 +22,8 @@ class ImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromVC = transitionContext.viewController(forKey: .from) as? LabelProviding,
-            let toVC = transitionContext.viewController(forKey: .to) as? LabelProviding,
+        guard let fromVC = transitionContext.viewController(forKey: .from) as? FriendProviding,
+            let toVC = transitionContext.viewController(forKey: .to) as? FriendProviding,
             let toView = transitionContext.view(forKey: .to) else { return }
         
         let containerView = transitionContext.containerView

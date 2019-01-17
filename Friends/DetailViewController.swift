@@ -8,15 +8,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, LabelProviding {
+class DetailViewController: UIViewController, FriendProviding, UIViewControllerTransitioningDelegate {
     
-    var friend: Friend?
+    var friend: Friend!
     var label: UILabel!
     var image: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        transitioningDelegate = self
         view.backgroundColor = .orange
     }
     

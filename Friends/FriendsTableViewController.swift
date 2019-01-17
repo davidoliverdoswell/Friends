@@ -14,7 +14,8 @@ struct Friend {
     var bio: String
 }
 
-class FriendsTableViewController: UITableViewController, LabelProviding {
+class FriendsTableViewController: UITableViewController, FriendProviding, UIViewControllerTransitioningDelegate {
+    
     var label: UILabel!
     var image: UIImageView!
     
@@ -65,6 +66,7 @@ class FriendsTableViewController: UITableViewController, LabelProviding {
         let friends = self.friends[index.row]
         destination.friend = friends
         navigationControllerDelegate.sourceCell = tableView.cellForRow(at: index)
+        segue.destination.transitioningDelegate = self
     }
 
 }
