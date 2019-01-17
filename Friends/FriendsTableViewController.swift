@@ -15,9 +15,10 @@ struct Friend {
 }
 
 class FriendsTableViewController: UITableViewController, FriendProviding, UIViewControllerTransitioningDelegate {
-    
-    var label: UILabel!
+
     var image: UIImageView!
+    var label: UILabel!
+    var bio: UILabel!
     
     var friend: Friend?
     var friends: [Friend] = []
@@ -61,12 +62,14 @@ class FriendsTableViewController: UITableViewController, FriendProviding, UIView
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! DetailViewController
-        let index = tableView.indexPathForSelectedRow!
-        let friends = self.friends[index.row]
-        destination.friend = friends
-        navigationControllerDelegate.sourceCell = tableView.cellForRow(at: index)
-        segue.destination.transitioningDelegate = self
+        if segue.identifier == "showDetail" {
+            segue.destination.transitioningDelegate = self
+            let destination = segue.destination as! DetailViewController
+            let index = tableView.indexPathForSelectedRow!
+            let friends = self.friends[index.row]
+            destination.friend = friends
+            navigationControllerDelegate.sourceCell = tableView.cellForRow(at: index)
+        }
     }
 
 }

@@ -11,9 +11,11 @@ import UIKit
 class DetailViewController: UIViewController, FriendProviding, UIViewControllerTransitioningDelegate {
     
     var friend: Friend!
-    var label: UILabel!
+    
     var image: UIImageView!
-
+    var label: UILabel!
+    var bio: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

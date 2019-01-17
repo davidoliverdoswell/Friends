@@ -9,8 +9,9 @@
 import UIKit
 
 protocol FriendProviding {
-    var label: UILabel! { get }
     var image: UIImageView! { get }
+    var label: UILabel! { get }
+    var bio: UILabel! { get }
 }
 
 typealias FriendProvidingVC = FriendProviding & UIViewController
@@ -28,23 +29,43 @@ class ImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let containerView = transitionContext.containerView
         
-        let sourceLabel = fromVC.label!
-        sourceLabel.alpha = 0.0
+        // view
         let sourceView = fromVC.image!
         sourceView.alpha = 0.0
-        containerView.addSubview(sourceLabel)
+        
+        // label
+        let sourceLabel = fromVC.label!
+        sourceLabel.alpha = 0.0
+        
+        // bio
+        let sourceBioLabel = fromVC.bio!
+        sourceBioLabel.alpha = 0.0
+
         containerView.addSubview(sourceView)
+        containerView.addSubview(sourceLabel)
+        containerView.addSubview(sourceBioLabel)
+        
+        let destinationView = toVC.image!
+        destinationView.alpha = 0.0
         
         let destinationLabel = toVC.label!
         destinationLabel.alpha = 0.0
-        let destinationView = toVC.image!
-        destinationView.alpha = 0.0
+        
+        let destinationBioLabel = toVC.bio!
+        destinationBioLabel.alpha = 0.0
+
+        containerView.addSubview(destinationBioLabel)
         containerView.addSubview(destinationLabel)
         containerView.addSubview(destinationView)
         
-        // set initial label frame and image in container view
-        let labelInitialFrame = containerView.convert(sourceLabel.bounds, from: sourceLabel)
+        // set initial image, label, and bio frames in container view
         let imageInitialFrame = containerView.convert(sourceView.bounds, from: sourceView)
+        let labelInitialFrame = containerView.convert(sourceLabel.bounds, from: sourceLabel)
+        let bioInitialFrame = containerView.convert(sourceBioLabel.bounds, from: sourceBioLabel)
+
+        let animatedImage = UIImageView(frame: imageInitialFrame)
+        animatedImage.contentMode = .scaleAspectFill
+        containerView.addSubview(animatedImage)
         
         let animatedLabel = UILabel(frame: labelInitialFrame)
         animatedLabel.text = sourceLabel.text
@@ -52,30 +73,36 @@ class ImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         animatedLabel.sizeToFit()
         containerView.addSubview(animatedLabel)
         
-        let animatedImage = UIImageView(frame: imageInitialFrame)
-        animatedImage.contentMode = .scaleAspectFill
-        containerView.addSubview(animatedImage)
+        let animatedBioLabel = UILabel(frame: bioInitialFrame)
+        animatedBioLabel.text = sourceLabel.text
+        animatedBioLabel.font = sourceLabel.font
+        animatedBioLabel.sizeToFit()
+        containerView.addSubview(animatedBioLabel)
         
         let duration = transitionDuration(using: transitionContext)
         toView.layoutIfNeeded()
         
         UIView.animate(withDuration: duration, animations: {
-            animatedLabel.frame = containerView.convert(destinationLabel.bounds, from: destinationLabel)
             animatedImage.frame = containerView.convert(destinationView.bounds, from: destinationView)
+            animatedLabel.frame = containerView.convert(destinationLabel.bounds, from: destinationLabel)
+            animatedBioLabel.frame = containerView.convert(destinationBioLabel.bounds, from: destinationBioLabel)
             toView.alpha = 1.0
         }) { (success) in
-            
-            sourceLabel.alpha = 1.0
+
             sourceView.alpha = 1.0
-            destinationLabel.alpha = 1.0
+            sourceLabel.alpha = 1.0
+            sourceBioLabel.alpha = 1.0
+
             destinationView.alpha = 1.0
+            destinationLabel.alpha = 1.0
+            destinationBioLabel.alpha = 1.0
             
-            animatedLabel.removeFromSuperview()
             animatedImage.removeFromSuperview()
+            animatedLabel.removeFromSuperview()
+            animatedBioLabel.removeFromSuperview()
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
-    
     
 }
