@@ -13,6 +13,8 @@
 		49C9BEB121F118FF00A123AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C9BEAF21F118FF00A123AC /* LaunchScreen.storyboard */; };
 		49C9BEB921F119D300A123AC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9BEB821F119D300A123AC /* DetailViewController.swift */; };
 		49C9BEBB21F11C0B00A123AC /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9BEBA21F11C0B00A123AC /* FriendsTableViewController.swift */; };
+		49C9BEBD21F12ED900A123AC /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9BEBC21F12ED900A123AC /* NavigationControllerDelegate.swift */; };
+		49C9BEBF21F1303700A123AC /* ImageTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9BEBE21F1303700A123AC /* ImageTransitionAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		49C9BEB221F118FF00A123AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C9BEB821F119D300A123AC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		49C9BEBA21F11C0B00A123AC /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		49C9BEBC21F12ED900A123AC /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		49C9BEBE21F1303700A123AC /* ImageTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitionAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,10 @@
 			children = (
 				49C9BEA621F118FE00A123AC /* AppDelegate.swift */,
 				49C9BEAA21F118FE00A123AC /* Main.storyboard */,
+				49C9BEBE21F1303700A123AC /* ImageTransitionAnimator.swift */,
 				49C9BEBA21F11C0B00A123AC /* FriendsTableViewController.swift */,
 				49C9BEB821F119D300A123AC /* DetailViewController.swift */,
+				49C9BEBC21F12ED900A123AC /* NavigationControllerDelegate.swift */,
 				49C9BEAD21F118FF00A123AC /* Assets.xcassets */,
 				49C9BEAF21F118FF00A123AC /* LaunchScreen.storyboard */,
 				49C9BEB221F118FF00A123AC /* Info.plist */,
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C9BEBD21F12ED900A123AC /* NavigationControllerDelegate.swift in Sources */,
 				49C9BEB921F119D300A123AC /* DetailViewController.swift in Sources */,
+				49C9BEBF21F1303700A123AC /* ImageTransitionAnimator.swift in Sources */,
 				49C9BEA721F118FE00A123AC /* AppDelegate.swift in Sources */,
 				49C9BEBB21F11C0B00A123AC /* FriendsTableViewController.swift in Sources */,
 			);

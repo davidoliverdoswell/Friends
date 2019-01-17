@@ -14,13 +14,16 @@ struct Friend {
     var bio: String
 }
 
-class FriendsTableViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController, LabelProviding {
+    var label: UILabel!
+    var image: UIImageView!
     
     var friend: Friend?
     var friends: [Friend] = []
 
     let friendImage = UIImageView()
-    let newFriend = UIImageView()
+    
+    let navigationControllerDelegate = NavigationControllerDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ class FriendsTableViewController: UITableViewController {
         
         friendImage.contentMode = .scaleAspectFill
         
+        navigationController?.delegate = navigationControllerDelegate
     }
 
     // MARK: - Table view data source
@@ -41,7 +45,6 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -57,7 +60,11 @@ class FriendsTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        let destination = segue.destination as! DetailViewController
+        let index = tableView.indexPathForSelectedRow!
+        let friends = self.friends[index.row]
+        destination.friend = friends
+        navigationControllerDelegate.sourceCell = tableView.cellForRow(at: index)
     }
 
 }

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, LabelProviding {
+    
+    var friend: Friend?
+    var label: UILabel!
+    var image: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
