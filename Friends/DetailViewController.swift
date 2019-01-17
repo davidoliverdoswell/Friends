@@ -12,7 +12,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .orange
     }
     
     @IBOutlet weak var imageView: UIImageView!
