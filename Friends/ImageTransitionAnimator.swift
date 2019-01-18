@@ -29,15 +29,17 @@ class ImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let containerView = transitionContext.containerView
         
-        // view
+        let toViewEndFrame = transitionContext.finalFrame(for: toVC as! UIViewController)
+        containerView.addSubview(toView)
+        toView.frame = toViewEndFrame
+        toView.alpha = 0.0 // Make destination start out transparent
+        
         let sourceView = fromVC.image!
         sourceView.alpha = 0.0
         
-        // label
         let sourceLabel = fromVC.label!
         sourceLabel.alpha = 0.0
         
-        // bio
         let sourceBioLabel = fromVC.bio!
         sourceBioLabel.alpha = 0.0
 
